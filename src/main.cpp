@@ -34,17 +34,20 @@ double error_bit( vector <int> bit_after, vector <int> bit_before){
 int main(int argc, char* argv[]) {
     srand(time(NULL));
 
-    vector <int> bit = gen_rand(12000);
+    
+    // generation random bit 
+    // for  24000 bit program it runs in 228 seconds  
+    vector <int> bit = gen_rand(24000);
 
 
     vector<complex<double>> qpsk, qam16, qam64;
 
     QAMModulator mod;
-
+    // mapping bit
     qpsk = mod.QPSK(bit);
     qam16= mod.QAM16(bit);
     qam64 = mod.QAM64(bit);
-
+    // save file or not save 
     int file_true = atoi(argv[1]);
 
     // modulation
@@ -80,7 +83,7 @@ int main(int argc, char* argv[]) {
     while (N < 500){
         
         Gaussian_noise noise;
-
+        // add gauissian noise 
         vector<complex<double>> qam_noise_qpsk = noise.add_Gaussian_noise(qpsk, dispersion);
         vector<complex<double>> qam_noise_qam16 = noise.add_Gaussian_noise(qam16, dispersion);
         vector<complex<double>> qam_noise_qam64 = noise.add_Gaussian_noise(qam64, dispersion);
@@ -117,14 +120,14 @@ int main(int argc, char* argv[]) {
         Demodulator demod;
 
         
-
+        // demodulation bit. return vector <int> 
         dem_bit_4 = demod.Demodulation_QPSK(qam_noise_qpsk); //0 ms
         
         dem_bit_16 = demod.Demodulation_QAM16(qam_noise_qam16); // 12k bit - 60 ms
         
-        
         dem_bit_64 = demod.Demodulation_QAM64(qam_noise_qam64); // 12k bit - 200ms
 
+        // add error bit
         error_qam4.push_back(error_bit(dem_bit_4,bit));
         error_qam16.push_back(error_bit(dem_bit_16,bit));
         error_qam64.push_back(error_bit(dem_bit_64,bit));
@@ -133,15 +136,16 @@ int main(int argc, char* argv[]) {
         N += 1;
         //cout << dispersion << endl;
     }
-
+    // time program
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double, milli> duration = end - start;
     cout << "Время выполнения программы: " << duration.count() << " mс" << endl;
 
     
 
-    //std::cout << "Время выполнения программы: " << duration.count() << " с" << std::endl;
+    // save error bit
     if(file_true){
+        
         ofstream file1("C:\\Users\\Ivan\\Desktop\\lerning\\YADRO\\Yadro_test\\text_file\\qpsk_er.txt", ios::binary);
         ofstream file2("C:\\Users\\Ivan\\Desktop\\lerning\\YADRO\\Yadro_test\\text_file\\qam16_er.txt", ios::binary);
         ofstream file3("C:\\Users\\Ivan\\Desktop\\lerning\\YADRO\\Yadro_test\\text_file\\qam64_er.txt", ios::binary);
