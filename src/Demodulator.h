@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <algorithm>
 #include <map>
 
 using namespace std;
@@ -14,57 +13,7 @@ class Demodulator{
         vector <int> dem_bit;
         double real;
         double imag;
-        /*
-        map<vector <int>, complex<double>> mapping_qam16(){
-            
-            for (int i = 0; i < 2; i++){
-                for (int j = 0; j < 2; j++){
-                    for (int k = 0; k < 2; k++){
-                        for (int l = 0; l < 2; l++){
-                            real = (1 - 2 * i) * (2 - (1 - 2 * k)) / sqrt(10);
-                            imag = (1 - 2 * j) * (2 - (1 - 2 * l)) / sqrt(10);
-                            vector <int> bit_map = {i,j,k,l}; 
-                            mapping_qam[bit_map] = complex <double> (real, imag);
-                            
-                            for(int num : bit_map){
-                                cout << num << " ";
-                            }
-                            cout << mapping_qam[bit_map] << endl;
-                            
-                        }
-                    }
-                }
-            }
-
-            return mapping_qam;
-        }
-
-
-        map<vector <int>, complex<double>> mapping_qam64(){
-           
-            for (int i = 0; i < 2; i++){
-                for (int j = 0; j < 2; j++){
-                    for (int k = 0; k < 2; k++){
-                        for (int l = 0; l < 2; l++){
-                            for (int e = 0; e < 2; e++){
-                                for (int h = 0; h < 2; h++){
-                                    real = (1 - 2 * i) * (4 - (1 - 2 * k) * (2 - (1 - 2 * e))) / sqrt(42);
-                                    imag = (1 - 2 * j) * (4 - (1 - 2 * l) * (2 - (1 - 2 * h))) / sqrt(42);
-                                    vector <int> bit = {i,j,k,l,e,h}; 
-                                    mapping_qam[bit] = complex <double> (real, imag);
-                                    
-                                }
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            return mapping_qam;
-        }
-        */
-
+        
     public:
 
         void print(auto bit_map){
