@@ -65,9 +65,9 @@ if(1):
     dispersion = np.arange(0,5,0.01)
     plt.figure(1)
     plt.title("Зависимость вероятности ошибки на бит от дисперсии шума")
-    plt.plot(dispersion,qpsk)    
-    plt.plot(dispersion, qam16)
-    plt.plot(dispersion,qam64)
+    plt.semilogy(dispersion,qpsk)    
+    plt.semilogy(dispersion, qam16)
+    plt.semilogy(dispersion,qam64)
 
     plt.xlabel("дисперсия шума")
     plt.ylabel("вероятность ошибки на бит")
