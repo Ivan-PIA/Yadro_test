@@ -9,6 +9,7 @@ using namespace std;
 class QAMModulator {
 
     private:
+
         vector <complex<double>> vec_qam;
         double real;
         double imag;
@@ -18,7 +19,7 @@ class QAMModulator {
         vector<complex<double>> QPSK(vector <int> bit){
             vec_qam.clear();
             if (bit.size() % 2 != 0 ){
-                cout << "QPSK:\nError, check bit_mass length, need multiple of 2";
+                cout << "QPSK:\nError, check bit_mass length, need multiple of 2\n";
 
             }
             else{
@@ -36,8 +37,8 @@ class QAMModulator {
             vec_qam.clear();
 
             if (bit.size() % 4 != 0 ){
-                cout << "QAM16:\nError, check bit_mass length, need multiple of 4";
-
+                cout << "QAM16:\nError, check bit_mass length, need multiple of 4\n";
+                
             }
             else{
                 for(int i = 0; i < bit.size(); i+=4 ){
@@ -57,7 +58,7 @@ class QAMModulator {
             vec_qam.clear();
             
             if (bit.size() % 6 != 0 ){
-                cout << "QAM64:\nError, check bit_mass length, need multiple of 6";
+                cout << "QAM64:\nError, check bit_mass length, need multiple of 6\n";
 
             }
             else{
